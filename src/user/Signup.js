@@ -14,6 +14,7 @@ const Signup = () => {
 
   const { name, email, password, error, success } = values;
 
+  //for changing the state of each value
   const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
@@ -21,7 +22,7 @@ const Signup = () => {
   const onSubmit = event => {
     event.preventDefault();
     setValues({ ...values, error: false });
-    signup({ name, email, password })
+    signup({ name, email, password })  //this signup has been brought from the  helper
       .then(data => {
         if (data.error) {
           setValues({ ...values, error: data.error, success: false });
@@ -38,6 +39,8 @@ const Signup = () => {
       })
       .catch(console.log("Error in signup"));
   };
+
+//TODO:i have to stylize the components a bit later
 
   const signUpForm = () => {
     return (
