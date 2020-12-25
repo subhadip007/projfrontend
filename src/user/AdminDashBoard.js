@@ -20,7 +20,7 @@ const adminLeftSide=()=>{
                      <Link to='/admin/categories'  className='nav-link text-success'>Manege Category</Link>
                  </li>
                  <li className='list-group-item'>
-                     <Link to='/admin/create/products'  className='nav-link text-success'>Manege product</Link>
+                     <Link to='/admin/products'  className='nav-link text-success'>Manege product</Link>
                  </li>
                  <li className='list-group-item'>
                      <Link to='/admin/create/product'  className='nav-link text-success'>Create product</Link>
