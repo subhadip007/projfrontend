@@ -30,7 +30,7 @@ return (
     <Base title="Home Page" description='Welcome here'>
       <div className="row text-center">
         <h1 className='text-white'>all tshirt</h1>
-        <div classname='row'>{products.map((product,index)=>{
+        <div className='row'>{products.map((product,index)=>{
           return(
             <div key={index} className='col-4 mb-4'>
               <Card product={product}/>
