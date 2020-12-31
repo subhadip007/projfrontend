@@ -1,4 +1,5 @@
 import { API } from "../../backend";
+import { cartEmpty } from "../../core/helper/CartHelper";
 
 export const signup = user => {
   return fetch(`${API}/signup`, {
@@ -45,7 +46,7 @@ export const signout = next => {
     return fetch(`${API}/signout`, {
       method: "GET"
     })
-      .then(response => console.log("signout success"))
+      .then(response => cartEmpty())
       .catch(err => console.log(err));
   }
 };
