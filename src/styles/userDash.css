@@ -1,0 +1,26 @@
+.nav-link{
+    color: #29BB89;
+}
+body{
+    min-height: ;
+}
+h5{
+    margin-bottom: 0 !important;
+}
+
+.field{
+    color: black;
+    background-color: #E6DD3B;
+    border: 1px solid #1E6F5C ;
+}
+
+.data{
+    background-color: #1E6F5C;
+    border: 1px solid #E6DD3B ;
+}
+
+
+
+.btn-primary{
+    border-radius: 50px;
+}

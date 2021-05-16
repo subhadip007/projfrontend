@@ -15,6 +15,8 @@ const [count, setCount] = useState(product.count)
 const cardTitle= product?product.name:'a photo'
 const cardDescription= product?product.description:'a default description'
 const cardPrice= product? product.price :'default'
+const cardStock= product?product.stock: '0'
+const cardCatName= product?product.category.name:'default category'
 
 const addToCart=()=>{
   addItemToCart(product, ()=>setRedirect(true))
@@ -63,6 +65,14 @@ const showAddToCart = addtoCart => {
               <p className="lead bg-success font-weight-normal text-wrap">
                 {cardDescription}
               </p>
+              <div className="row">
+              <p className="col-4 bg-info">
+               Stock: {cardStock}
+              
+              </p>
+              <p className="col-8 bg-warning"> Category:  {cardCatName}</p>
+              </div>
+              
               <p className="btn btn-success rounded  btn-sm px-4">$ {cardPrice}</p>
               <div className="row">
                 <div className="col-12">

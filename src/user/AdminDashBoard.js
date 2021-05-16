@@ -51,8 +51,8 @@ const adminRightSide=()=>{
     )
 };
     return (
-       <Base title='AdminDashboard page' description='Manage your products here ' className='container bg-success p-4'>
-           <h1>This is a Admin dashboard page</h1>
+       <Base title='Admin Dashboard' description='Manage your products here '  className='container  p-4'>
+          
            <div className='row'>
           <div className='col-3'>
           {adminLeftSide()}
