@@ -54,11 +54,11 @@ const adminRightSide=()=>{
        <Base title='Admin Dashboard' description='Manage your products here '  className='container  p-4'>
           
            <div className='row'>
-          <div className='col-3'>
+          <div className='col-4'>
           {adminLeftSide()}
 
           </div>
-          <div className='col-9'>
+          <div className=' col-md-auto'>
           {adminRightSide()}
           </div>
            </div>

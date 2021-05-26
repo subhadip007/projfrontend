@@ -1,3 +1,6 @@
 footer{
     background-color:#289672 !important;
+    position:relative;
+    bottom: 0px;
+    padding-bottom: 0px !important;
 }

@@ -1,4 +1,25 @@
 img{
     min-height: 13em;
     max-width: 100%;
+    max-height:10em;
 }
+
+.card{
+   background-color: #E4F9F5!important;
+    width: 18rem ;
+    height: auto;
+    margin: 12px !important;
+    position:relative;
+    
+}
+
+.card-header{
+color: black;
+font-weight: bold;
+
+}
+
+.image{
+    background-color:black !important;
+}
+

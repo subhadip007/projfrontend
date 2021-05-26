@@ -22,7 +22,7 @@ const loadAllProduct=()=>{
       setProducts(data)
     }else{
       console.log(cate)
-      let val=data.filter(prod=>prod.category.name==cate)
+      let val=data.filter(prod=>prod.category.name == cate)
       setProducts(val)
       
     }
@@ -62,7 +62,7 @@ return (
         ))
       }
     </select>
-      <div className="row text-center">
+      <div className="row  text-center">
       {
         
         
@@ -72,9 +72,9 @@ return (
           return(
 
            
-            <div key={index} className='col-4 mb-4'>
+            <div key={index} className='col mb-4'>
             
-              <Card product={product}/>
+              <Card product={product} className="card"/>
             </div>
           )
         })}</div>}

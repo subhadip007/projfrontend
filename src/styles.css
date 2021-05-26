@@ -11,9 +11,19 @@ body {
 footer{
   position:relative;
   bottom: 0px;
-
+padding-bottom: 0px !important;
 }
 
 .filter{
   margin-bottom: 11px;
 }
+
+.cart{
+  min-height: 15em;
+  
+}
+
+.home{
+  min-height: 15em;
+}
+ 

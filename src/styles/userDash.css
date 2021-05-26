@@ -1,8 +1,9 @@
 .nav-link{
     color: #29BB89;
 }
-body{
-    min-height: ;
+
+.user-dash{
+    min-height: 15em;
 }
 h5{
     margin-bottom: 0 !important;
@@ -19,8 +20,22 @@ h5{
     border: 1px solid #E6DD3B ;
 }
 
-
+footer{
+    position:relative;
+    bottom: 0px;
+  
+  }
+  
 
 .btn-primary{
     border-radius: 50px;
 }
+
+.edit{
+    color: whitesmoke;
+}
+
+.btn-primary:hover{
+    background-color:black;
+}
+

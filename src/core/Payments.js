@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react'
-import { Link } from 'react-router-dom'
+import {Link, useHistory } from 'react-router-dom'
 import { cartEmpty, loadCart } from './helper/CartHelper'
 import { getmeToken, processPayment } from './helper/PaymentHelper'
 import {createOrder} from './helper/OrderHelper'
@@ -7,7 +7,7 @@ import { isAutheticated } from '../auth/helper'
 import DropIn from "braintree-web-drop-in-react";
 
 
- const Payments=({products,setReload=f => f, reload=undefined})=> {
+const  Payments=({products,setReload=f => f, reload=undefined})=> {
     const [info, setInfo] = useState({
         loading: false,
         success: false,
@@ -15,7 +15,7 @@ import DropIn from "braintree-web-drop-in-react";
         error: "",
         instance: {}
       });
-    
+     
       const userId = isAutheticated() && isAutheticated().user._id;
       const token = isAutheticated() && isAutheticated().token;
     
@@ -40,9 +40,9 @@ import DropIn from "braintree-web-drop-in-react";
                   options={{ authorization: info.clientToken }}
                   onInstance={instance => (info.instance = instance)}
                 />
-                <button className="btn btn-block btn-success" onClick={onPurchase}>
+               {!isAutheticated()? <button className="btn btn-block btn-warning" ><Link to="/signin">Sign In to buy the product</Link></button> : <button className="btn btn-block btn-success" onClick={onPurchase}>
                   Buy
-                </button>
+                </button>}
               </div>
             ) : (
               <h3> Your Cart is Empty</h3>
@@ -104,4 +104,4 @@ import DropIn from "braintree-web-drop-in-react";
     
 }
 
-export default Payments
+export default Payments;
