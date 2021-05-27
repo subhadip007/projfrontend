@@ -3,6 +3,7 @@ import Base from "../core/Base";
 import { Link, Redirect } from "react-router-dom";
 import { getCategories, getProduct,updateProduct } from "./helper/adminapicall";
 import { isAutheticated } from "../auth/helper/index";
+import { Multiselect } from 'multiselect-react-dropdown';
 
 const UpdateProduct = ({match}) => {
   const { user, token } = isAutheticated();
@@ -171,11 +172,11 @@ const UpdateProduct = ({match}) => {
       </div>
       <div className="form-group">
         <select
-          onChange={handleChange("category")}
+           onChange={handleChange("category")}
           className="form-control"
           placeholder="Category"
-        >
-          <option>Select</option>
+           >
+         
           {categories &&
             categories.map((cate, index) => (
               <option key={index} value={cate._id}>
@@ -183,6 +184,15 @@ const UpdateProduct = ({match}) => {
               </option>
             ))}
         </select>
+        {/* <Multiselect
+options={categories} // Options to display in the dropdown
+ //selectedValues={_id} // Preselected value to persist in dropdown
+onSelect={handleChange("category")} // Function will trigger on select event
+// onRemove={this.onRemove} // Function will trigger on remove event
+value="_id"
+displayValue="name" // Property name to display in the dropdown options
+/> */}
+      
       </div>
       <div className="form-group">
         <input

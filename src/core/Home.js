@@ -16,6 +16,7 @@ const [error,setError]= useState(false)
 const [cate,setCate]=useState("All");
 const loadAllProduct=()=>{
   getProduct().then(data=>{
+    console.log(data)
     if(data.error){
       setError(data.error)
     }else if(cate=="All"){
