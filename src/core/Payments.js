@@ -5,7 +5,8 @@ import { getmeToken, processPayment } from './helper/PaymentHelper'
 import {createOrder} from './helper/OrderHelper'
 import { isAutheticated } from '../auth/helper'
 import DropIn from "braintree-web-drop-in-react";
-
+import GooglePayButton from '@google-pay/button-react';
+import "../styles/payment.css"
 
 const  Payments=({products,setReload=f => f, reload=undefined})=> {
     const [info, setInfo] = useState({
@@ -15,7 +16,7 @@ const  Payments=({products,setReload=f => f, reload=undefined})=> {
         error: "",
         instance: {}
       });
-     
+      
       const userId = isAutheticated() && isAutheticated().user._id;
       const token = isAutheticated() && isAutheticated().token;
     
@@ -54,6 +55,7 @@ const  Payments=({products,setReload=f => f, reload=undefined})=> {
       useEffect(() => {
         getToken(userId, token);
         showbtdropIn()
+        getAmount()
       }, []);
     
       const onPurchase = () => {
@@ -91,7 +93,9 @@ const  Payments=({products,setReload=f => f, reload=undefined})=> {
         let amount = 0;
         products.map(p => {
           amount = amount + p.price;
+          
         });
+         
         return amount;
       };
     
@@ -99,9 +103,60 @@ const  Payments=({products,setReload=f => f, reload=undefined})=> {
         <div>
           {products.length >0 ?<h3>Your bill is {getAmount()} $</h3>: ''}
           {showbtdropIn()}
+          <h4>Or use</h4>
+          <GooglePayButton
+          className="gpaybutton"
+  environment="TEST"
+  paymentRequest={{
+    apiVersion: 2,
+    apiVersionMinor: 0,
+    allowedPaymentMethods: [
+      {
+        type: 'CARD',
+        parameters: {
+          allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+          allowedCardNetworks: ['MASTERCARD', 'VISA'],
+        },
+        tokenizationSpecification: {
+          type: 'PAYMENT_GATEWAY',
+          parameters: {
+            gateway: 'example',
+          },
+        },
+      },
+    ],
+    merchantInfo: {
+      merchantId: '12345678901234567890',
+      merchantName: 'Demo Merchant',
+    },
+    transactionInfo: {
+      totalPriceStatus: 'FINAL',
+      totalPriceLabel: 'Total',
+      totalPrice: `${getAmount()}`,
+      currencyCode: 'USD',
+      countryCode: 'US',
+    },
+    callbackIntents: ['PAYMENT_AUTHORIZATION'],
+    shippingAddressRequired: true,
+
+  }}
+  onLoadPaymentData={paymentRequest => {
+    console.log('load payment data', paymentRequest);
+  }}
+  onPaymentAuthorized={paymentData=>{
+    console.log('Payment autharize success', paymentData);
+    return {transactionState: 'SUCCESS'}
+  }}
+
+  buttonType="long"
+/> 
         </div>
       );
     
 }
 
 export default Payments;
+
+
+
+ 

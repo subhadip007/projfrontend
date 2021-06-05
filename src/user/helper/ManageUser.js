@@ -16,13 +16,14 @@ const UpdateUser = ()=>{
     
         name:"",
         email:"",
+        password:"",
         error:false,
         success:false,
         redirect:false
 })
 
 
-const {name,email,error,success,redirect}=user;
+const {name,email,password,error,success,redirect}=user;
 
 const handleChange = name => event => {
     setUser({ ...user, error: false, [name]: event.target.value });
@@ -61,7 +62,7 @@ useEffect(() => {
   const onSub = event => {
     event.preventDefault();
     setUser({ ...user, error: false });
-    updateUser(userId,token,{name,email})  //this signup has been brought from the  helper
+    updateUser(userId,token,{name,email,password})  //this signup has been brought from the  helper
       .then(data => {
         if (data.error) {
           setUser({...user, error: data.error})
@@ -70,6 +71,7 @@ useEffect(() => {
             ...user,
             name: "",
             email: "",
+            password:"",
             error: false,
             success: true
           });
@@ -125,6 +127,15 @@ return(
                 onChange={handleChange("email")}
                 type="email"
                 value={email}
+              />
+            </div>
+            <div className="form-group">
+              <label className="text-light">Password</label>
+              <input
+                className="form-control"
+                onChange={handleChange("password")}
+                type="password"
+                value={password}
               />
             </div>
 

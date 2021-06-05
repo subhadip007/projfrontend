@@ -40,7 +40,6 @@ const Signup = () => {
       .catch(console.log("Error in signup"));
   };
 
-//TODO:i have to stylize the components a bit later
 
   const signUpForm = () => {
     return (
