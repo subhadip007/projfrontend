@@ -7,6 +7,8 @@ import { isAutheticated } from '../auth/helper'
 import DropIn from "braintree-web-drop-in-react";
 import GooglePayButton from '@google-pay/button-react';
 import "../styles/payment.css"
+import showRazorpay from './razorpay'
+
 
 const  Payments=({products,setReload=f => f, reload=undefined})=> {
     const [info, setInfo] = useState({
@@ -88,8 +90,8 @@ const  Payments=({products,setReload=f => f, reload=undefined})=> {
             });
         });
       };
-    
-      const getAmount = () => {
+   
+    const getAmount = () => {
         let amount = 0;
         products.map(p => {
           amount = amount + p.price;
@@ -150,6 +152,8 @@ const  Payments=({products,setReload=f => f, reload=undefined})=> {
 
   buttonType="long"
 /> 
+{/* <h4>Or Use</h4>
+<button type="button"  class="btn btn-primary btn-lg btn-block"><a onClick={showRazorpay}>Rezorpay</a></button> */}
         </div>
       );
     
