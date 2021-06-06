@@ -15,15 +15,19 @@ const UpdateUser = ()=>{
     const [user,setUser]=useState({
     
         name:"",
+        lastname:"",
         email:"",
-        password:"",
+        phnumber:"",
+        address1:"",
+        address2:"",
+        postalcode: "",
         error:false,
         success:false,
         redirect:false
 })
 
 
-const {name,email,password,error,success,redirect}=user;
+const {name,email,lastname,phnumber,postalcode,address1,address2,error,success,redirect}=user;
 
 const handleChange = name => event => {
     setUser({ ...user, error: false, [name]: event.target.value });
@@ -35,7 +39,7 @@ const preload=(userId,token)=>{
         if(data.error){
           return setUser({...user,error:data.error})
         }else{
-            return setUser({...user,name: data.name, email: data.email})
+            return setUser({...user,name: data.name,lastname: data.lastname, email: data.email,phnumber: data.phnumber,address1: data.address1,address2: data.address2,postalcode: data.postalcode})
         }
         })
 }
@@ -62,7 +66,7 @@ useEffect(() => {
   const onSub = event => {
     event.preventDefault();
     setUser({ ...user, error: false });
-    updateUser(userId,token,{name,email,password})  //this signup has been brought from the  helper
+    updateUser(userId,token,{name,email,lastname,address1,phnumber,postalcode,address2})  //this signup has been brought from the  helper
       .then(data => {
         if (data.error) {
           setUser({...user, error: data.error})
@@ -70,8 +74,12 @@ useEffect(() => {
           setUser({
             ...user,
             name: "",
+            lastname:"",
             email: "",
-            password:"",
+            phnumber:"",
+            address1:"",
+            address2:"",
+            postalcode: "",
             error: false,
             success: true
           });
@@ -130,12 +138,48 @@ return(
               />
             </div>
             <div className="form-group">
-              <label className="text-light">Password</label>
+              <label className="text-light">Lastname</label>
               <input
                 className="form-control"
-                onChange={handleChange("password")}
-                type="password"
-                value={password}
+                onChange={handleChange("lastname")}
+                type="text"
+                value={lastname}
+              />
+            </div>
+            <div className="form-group">
+              <label className="text-light">Phone Number</label>
+              <input
+                className="form-control"
+                onChange={handleChange("phnumber")}
+                type="text"
+                value={phnumber}
+              />
+            </div>
+            <div className="form-group">
+              <label className="text-light">Address Line 1</label>
+              <input
+                className="form-control"
+                onChange={handleChange("address1")}
+                type="text"
+                value={address1}
+              />
+            </div>
+            <div className="form-group">
+              <label className="text-light">Address Line 2</label>
+              <input
+                className="form-control"
+                onChange={handleChange("address2")}
+                type="text"
+                value={address2}
+              />
+            </div>
+            <div className="form-group">
+              <label className="text-light">Postal Code</label>
+              <input
+                className="form-control"
+                onChange={handleChange("postalcode")}
+                type="text"
+                value={postalcode}
               />
             </div>
 

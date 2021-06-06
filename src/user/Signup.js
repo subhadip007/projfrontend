@@ -6,13 +6,18 @@ import { signup } from "../auth/helper";
 const Signup = () => {
   const [values, setValues] = useState({
     name: "",
+    lastname:"",
     email: "",
-    password: "",
+    password:"",
+    phnumber:"",
+    address1:"",
+    address2:"",
+    postalcode: "",
     error: "",
     success: false
   });
 
-  const { name, email, password, error, success } = values;
+  const { name,lastname,email,password,phnumber,address1,address2,postalcode,error, success } = values;
 
   //for changing the state of each value
   const handleChange = name => event => {
@@ -22,7 +27,7 @@ const Signup = () => {
   const onSubmit = event => {
     event.preventDefault();
     setValues({ ...values, error: false });
-    signup({ name, email, password })  //this signup has been brought from the  helper
+    signup({ name,lastname,phnumber, email,password,postalcode,address1,address2 })  //this signup has been brought from the  helper
       .then(data => {
         if (data.error) {
           setValues({ ...values, error: data.error, success: false });
@@ -30,8 +35,13 @@ const Signup = () => {
           setValues({
             ...values,
             name: "",
+            lastname:"",
             email: "",
-            password: "",
+            password:"",
+            phnumber:"",
+            address1:"",
+            address2:"",
+            postalcode: "",
             error: "",
             success: true
           });
@@ -47,7 +57,7 @@ const Signup = () => {
         <div className="col-md-6 offset-sm-3 text-left">
           <form>
             <div className="form-group">
-              <label className="text-light">Name</label>
+              <label className="text-light">Name(Username)<span style={{color:"red"}}>*</span></label>
               <input
                 className="form-control"
                 onChange={handleChange("name")}
@@ -56,7 +66,16 @@ const Signup = () => {
               />
             </div>
             <div className="form-group">
-              <label className="text-light">Email</label>
+              <label className="text-light">Last Name</label>
+              <input
+                className="form-control"
+                onChange={handleChange("lastname")}
+                type="text"
+                value={lastname}
+              />
+            </div>
+            <div className="form-group">
+              <label className="text-light">Email<span style={{color:"red"}}>*</span></label>
               <input
                 className="form-control"
                 onChange={handleChange("email")}
@@ -66,12 +85,48 @@ const Signup = () => {
             </div>
 
             <div className="form-group">
-              <label className="text-light">Password</label>
+              <label className="text-light">Password<span style={{color:"red"}}>*</span></label>
               <input
                 onChange={handleChange("password")}
                 className="form-control"
                 type="password"
                 value={password}
+              />
+            </div>
+            <div className="form-group">
+              <label className="text-light">Phone Number<span style={{color:"red"}}>*</span></label>
+              <input
+                className="form-control"
+                onChange={handleChange("phnumber")}
+                type="text"
+                value={phnumber}
+              />
+            </div>
+            <div className="form-group">
+              <label className="text-light">Address 1<span style={{color:"red"}}>*</span></label>
+              <input
+                className="form-control"
+                onChange={handleChange("address1")}
+                type="text"
+                value={address1}
+              />
+            </div>
+            <div className="form-group">
+              <label className="text-light">Address2</label>
+              <input
+                className="form-control"
+                onChange={handleChange("address2")}
+                type="text"
+                value={address2}
+              />
+            </div>
+            <div className="form-group">
+              <label className="text-light">Postal Code<span style={{color:"red"}}>*</span></label>
+              <input
+                className="form-control"
+                onChange={handleChange("postalcode")}
+                type="text"
+                value={postalcode}
               />
             </div>
             <button onClick={onSubmit} className="btn btn-success btn-block">

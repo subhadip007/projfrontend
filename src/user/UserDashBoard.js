@@ -15,6 +15,8 @@ import { getUser } from './helper/userapicalls'
  const  UserDashboard=() =>{
     const[user,setUser]=useState([])
      const[date,setDate]=useState()
+    //  const [purchases,setPurchases]=useState([])\
+    let purchases=[];
     const userId = isAutheticated() && isAutheticated().user._id;
     const token = isAutheticated() && isAutheticated().token;
 
@@ -26,7 +28,9 @@ const getUserData=(userId,token)=>{
 
 useEffect(() => {
    getUserData(userId,token)
-   console.log(user.purchases)
+   console.log(purchases.length)
+//   setPurchases(user.purchases)
+purchases= user.purchases;
    
 }, [])
 
@@ -45,6 +49,12 @@ return (
             <h5 className="text-center data col-8">{user.name}</h5>
         <h5 className="col-4 text-center field ">Email:  </h5>
             <h5 className="text-center data col-8">{user.email}</h5>
+        <h5 className="col-4 text-center field ">Ph number:  </h5>
+            <h5 className="text-center data col-8">{user.phnumber}</h5>
+        <h5 className="col-4 text-center field ">Address 1:  </h5>
+            <h5 className="text-center data col-8">{user.address1}</h5>
+        <h5 className="col-4 text-center field ">postal code:  </h5>
+            <h5 className="text-center data col-8">{user.postalcode}</h5>
             
            
             </div>
@@ -54,7 +64,7 @@ return (
         </div>
         <div role="tabpanel" className="tab-pane" id="tab-2">
            
-            {0? (<p>products</p>):(<p className="text-center bg-danger btn-lg mt-2">You Havent purchased anything yet 😮 !!</p>)}
+            {(purchases.length) ? (<p>products</p>):(<p className="text-center bg-danger btn-lg mt-2">You Havent purchased anything yet 😮 !!</p>)}
         </div>
         
     </div>
