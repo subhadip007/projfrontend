@@ -1,20 +1,32 @@
 import React, { useState } from "react";
 import Base from "../core/Base";
 import { Link, Redirect } from "react-router-dom";
-
+import "../styles/signin.css"
 import { signin, authenticate, isAutheticated } from "../auth/helper";
 
 const Signin = () => {
   const [values, setValues] = useState({
-    email: "lol@gmail.com",
-    password: "qwerty",
+    email: "",
+    password: "",
     error: "",
     loading: false,
     didRedirect: false
   });
-
+  const [field,setField]= useState("password");
   const { email, password, error, loading, didRedirect } = values;
   const { user } = isAutheticated();
+
+
+  let myFunction=()=>
+  {
+      if(field=="password"){
+        setField("text")
+      }else{
+        setField("password")
+      }
+     
+    }
+
 
   const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
@@ -98,12 +110,17 @@ const Signin = () => {
 
             <div className="form-group">
               <label className="text-light">Password</label>
+             
               <input
                 onChange={handleChange("password")}
                 value={password}
                 className="form-control"
-                type="password"
+                type={field}
+               
               />
+               
+               
+              <input type="checkbox" onClick={myFunction}/>Show Password
             </div>
             <button onClick={onSubmit} className="btn btn-success btn-block">
               Submit
@@ -120,7 +137,7 @@ const Signin = () => {
       {errorMessage()}
       {signInForm()}
       {performRedirect()}
-      <p className="text-white text-center">{JSON.stringify(values)}</p>
+      {/* <p className="text-white text-center">{JSON.stringify(values)}</p> */}
     </Base>
   );
 };

@@ -1,0 +1,15 @@
+.signin{
+background-color: #289672;
+}
+.signin:hover{
+background-color: #29BB89;
+}
+
+.btn{
+    border-radius: 12px;
+}
+
+.signlink{
+    color:black !important;
+    text-decoration: none !important;
+}

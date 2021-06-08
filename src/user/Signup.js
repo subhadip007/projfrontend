@@ -16,7 +16,7 @@ const Signup = () => {
     error: "",
     success: false
   });
-
+  const [field,setField]= useState("password");
   const { name,lastname,email,password,phnumber,address1,address2,postalcode,error, success } = values;
 
   //for changing the state of each value
@@ -27,6 +27,8 @@ const Signup = () => {
   const onSubmit = event => {
     event.preventDefault();
     setValues({ ...values, error: false });
+    
+   
     signup({ name,lastname,phnumber, email,password,postalcode,address1,address2 })  //this signup has been brought from the  helper
       .then(data => {
         if (data.error) {
@@ -38,6 +40,7 @@ const Signup = () => {
             lastname:"",
             email: "",
             password:"",
+            password1:"",
             phnumber:"",
             address1:"",
             address2:"",
@@ -48,14 +51,26 @@ const Signup = () => {
         }
       })
       .catch(console.log("Error in signup"));
+    
   };
 
-
+let myFunction=()=>
+{
+    if(field=="password"){
+      setField("text")
+    }else{
+      setField("password")
+    }
+   
+  }
+  
   const signUpForm = () => {
     return (
+      <form>
       <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
-          <form>
+     
+        <div className="col-6  text-left">
+          
             <div className="form-group">
               <label className="text-light">Name(Username)<span style={{color:"red"}}>*</span></label>
               <input
@@ -89,10 +104,13 @@ const Signup = () => {
               <input
                 onChange={handleChange("password")}
                 className="form-control"
-                type="password"
+                type={field}
                 value={password}
               />
+              <input type="checkbox" onClick={myFunction}/>Show Password
             </div>
+            </div>
+            <div className="col-6  text-left">
             <div className="form-group">
               <label className="text-light">Phone Number<span style={{color:"red"}}>*</span></label>
               <input
@@ -129,12 +147,14 @@ const Signup = () => {
                 value={postalcode}
               />
             </div>
-            <button onClick={onSubmit} className="btn btn-success btn-block">
+            
+          
+        </div>
+        <button onClick={onSubmit} className="btn btn-success btn-block">
               Submit
             </button>
-          </form>
-        </div>
       </div>
+      </form>
     );
   };
 

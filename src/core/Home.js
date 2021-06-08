@@ -54,6 +54,7 @@ loadAllCategory()
 
 return (
     <Base>
+    <div className="home">
     <p>Sort By Category</p>
     <select onChange={handleVal} className="btn bg-info filter">
     <option className="ng-success" value={"All"}>All</option>
@@ -82,7 +83,7 @@ return (
       </div>
     
 
-    
+      </div>
     </Base>
   );
 }

@@ -43,7 +43,7 @@ const  Payments=({products,setReload=f => f, reload=undefined})=> {
                   options={{ authorization: info.clientToken }}
                   onInstance={instance => (info.instance = instance)}
                 />
-               {!isAutheticated()? <button className="btn btn-block btn-warning" ><Link to="/signin">Sign In to buy the product</Link></button> : <button className="btn btn-block btn-success" onClick={onPurchase}>
+               {!isAutheticated()? <button className="btn btn-lg btn-block signin" ><Link className="signlink"to="/signin">Sign In to buy the product</Link></button> : <button className="btn btn-block btn-success" onClick={onPurchase}>
                   Buy
                 </button>}
               </div>
@@ -105,7 +105,9 @@ const  Payments=({products,setReload=f => f, reload=undefined})=> {
         <div>
           {products.length >0 ?<h3>Your bill is {getAmount()} $</h3>: ''}
           {showbtdropIn()}
-          <h4>Or use</h4>
+          {(products.length&&isAutheticated()) ?(
+            <div>
+            <h4>Or use</h4>
           <GooglePayButton
           className="gpaybutton"
   environment="TEST"
@@ -151,7 +153,9 @@ const  Payments=({products,setReload=f => f, reload=undefined})=> {
   }}
 
   buttonType="long"
-/> 
+/>
+</div>
+ ):""}
 {/* <h4>Or Use</h4>
 <button type="button"  class="btn btn-primary btn-lg btn-block"><a onClick={showRazorpay}>Rezorpay</a></button> */}
         </div>
