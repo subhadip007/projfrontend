@@ -54,7 +54,9 @@ loadAllCategory()
 
 return (
     <Base>
-    <div className="home">
+    <div className="mainP">
+    {(products.length)===0? (<div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>):<div className="home">
+    
     <p>Sort By Category</p>
     <select onChange={handleVal} className="btn bg-info filter">
     <option className="ng-success" value={"All"}>All</option>
@@ -64,6 +66,8 @@ return (
         ))
       }
     </select>
+
+    
       <div className="row  text-center">
       {
         
@@ -79,10 +83,13 @@ return (
               <Card product={product} className="card"/>
             </div>
           )
-        })}</div>}
+        })}</div>
+        
+        }
       </div>
     
 
+      </div>}
       </div>
     </Base>
   );
